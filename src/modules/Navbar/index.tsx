@@ -1,15 +1,7 @@
 import React, { FC, ReactNode } from "react";
 import { AppBar, Box, IconButton, Toolbar, Button } from "@mui/material";
 import TeamsMenu from "./TeamsMenu";
-
-const ChevronDown = () => (
-  <i
-    className="fa-solid fa-chevron-down"
-    style={{
-      fontSize: "0.5em",
-    }}
-  ></i>
-);
+import ChevronDown from "@/shared/icons/ChevronDown";
 
 const DummyDropdown: FC<{ title: string | ReactNode }> = ({ title }) => (
   <Button
@@ -37,10 +29,17 @@ const Navbar = () => {
             gap: "2em",
           }}
         >
-          <Box sx={{ display: "flex", gap: " 1em", alignItems: "center" }}>
+          <Box
+            sx={{
+              display: "flex",
+              gap: " 1em",
+              alignItems: "center",
+            }}
+          >
+            {/* TODO: wrap with ul */}
             <a href="/">
               <img
-                src="https://moharam.ilert.com/jakarta.faces.resource/ilert_header_logo.png.xhtml?ln=images"
+                src="https://cdn.ilert.com/jakarta.faces.resource/ilert_header_logo.png.xhtml?ln=images"
                 alt="logo"
                 width="80px"
               />
@@ -52,6 +51,7 @@ const Navbar = () => {
             <DummyDropdown title="Reports" />
           </Box>
           <Box sx={{ display: "flex", gap: " 1em", alignItems: "center" }}>
+            {/* TODO: wrap with ul */}
             <TeamsMenu />
             <IconButton
               sx={{

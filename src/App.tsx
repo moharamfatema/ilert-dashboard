@@ -1,12 +1,11 @@
-import './App.css'
-import DefaultLayout from './layouts/default'
+import DefaultLayout from '@/layouts/default'
+import Dashboard from '@/modules/Dashboard'
 
 function App() {
   return (
     <DefaultLayout>
-      <div>
-        hi
-      </div>
+      {/* TODO: mobx selected team */}
+      <Dashboard/>
     </DefaultLayout>
   )
 }
