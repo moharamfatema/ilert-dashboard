@@ -4,19 +4,20 @@ import React, { FC, useState } from "react";
 const DashboardBlock: FC<{
   title: string;
   children: React.ReactNode;
-}> = ({ title, children }) => {
+  isEditMode?: boolean;
+}> = ({ title, children, isEditMode = false }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const borderStyle = isEditMode ? "1px dashed #ccc" : "1px solid transparent";
   return (
     <Box
       sx={{
         padding: 2,
         backgroundColor: "white",
-        marginBottom: 2,
-        border: "1px solid transparent",
+        border: borderStyle,
+        borderRadius: 2,
         "&:hover": {
-          //   dashed rounded border
-          border: "1px dashed #ccc",
-          borderRadius: 2,
+          // hand cursor
+        //   cursor: "pointer",
         },
       }}
       onMouseEnter={() => setIsHovered(true)}
@@ -40,18 +41,21 @@ const DashboardBlock: FC<{
           <IconButton
             size="small"
             sx={{
-              marginRight: 1,
-              visibility: isHovered ? "visible" : "hidden",
+              marginRight: 2,
+              visibility: isEditMode && isHovered ? "visible" : "hidden",
             }}
           >
             <i className="fas fa-pen" style={{ fontSize: "0.7em" }}></i>
           </IconButton>
         </Box>
-        {isHovered && (
-          <IconButton size="small">
-            <i className="fas fa-trash" style={{ fontSize: "0.7em" }}></i>
-          </IconButton>
-        )}
+        <IconButton
+          size="small"
+          sx={{
+            visibility: isEditMode && isHovered ? "visible" : "hidden",
+          }}
+        >
+          <i className="fas fa-trash" style={{ fontSize: "0.7em" }}></i>
+        </IconButton>
       </Box>
       <Box>{children}</Box>
     </Box>
