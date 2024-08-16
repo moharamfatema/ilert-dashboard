@@ -4,3 +4,7 @@ body {
   min-height: 100vh;
   font-family: 'roboto', sans-serif;
 }
+
+i.fa-solid, i.fas {
+  font-size: 0.7em;
+}

@@ -4,11 +4,20 @@ import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react({ tsDecorators: true })],
   resolve: {
     alias: { "@": path.resolve(__dirname, "./src/") },
   },
   optimizeDeps: {
-    include: ['@emotion/styled'],
+    include: ["@emotion/styled"],
+  },
+  server: {
+    proxy: {
+      "/api": {
+        target: "https://api.ilert.com",
+        changeOrigin: true,
+        secure: false,
+      },
+    },
   },
 });

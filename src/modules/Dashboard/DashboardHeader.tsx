@@ -1,8 +1,12 @@
-import React from "react";
+import { useContext } from "react";
 import { Container, Typography, Box, Button } from "@mui/material";
-import ChevronDown from "@/shared/icons/ChevronDown";
+import { observer } from "mobx-react-lite";
 
-const DashboardHeader = ({ selectedTeam }) => {
+import { GlobalContext } from "@/providers/GlobalContext";
+
+const DashboardHeader = observer(() => {
+  const globalConfig = useContext(GlobalContext);
+
   return (
     <Container
       component="header"
@@ -15,7 +19,9 @@ const DashboardHeader = ({ selectedTeam }) => {
         background: "#f5f5f5",
       }}
     >
-      <Typography variant="h6">Dashboard / {selectedTeam}</Typography>
+      <Typography variant="h6">
+        Dashboard / {globalConfig.selectedTeam}
+      </Typography>
       <Box
         sx={{
           display: "flex",
@@ -28,6 +34,6 @@ const DashboardHeader = ({ selectedTeam }) => {
       </Box>
     </Container>
   );
-};
+});
 
 export default DashboardHeader;

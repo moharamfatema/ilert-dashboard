@@ -1,15 +1,6 @@
-import React from "react";
 import { Container, Box, Divider } from "@mui/material";
 import DashboardHeader from "./DashboardHeader";
 import DashboardBlock from "./DashboardBlock";
-
-const blocks = [
-    'Open Alerts',
-    'Recent Alert Activity',
-    'Service Status',
-    'Open Incidents',
-    'Metrics',
-];
 
 const Dashboard = () => {
   return (
@@ -19,7 +10,7 @@ const Dashboard = () => {
         flexDirection: "column",
       }}
     >
-      <DashboardHeader selectedTeam="Team 1" />
+      <DashboardHeader />
       <Divider />
       <Container
         maxWidth="xl"

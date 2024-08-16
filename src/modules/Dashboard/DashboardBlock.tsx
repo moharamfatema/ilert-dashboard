@@ -5,7 +5,7 @@ const DashboardBlock: FC<{
   title: string;
   children: React.ReactNode;
   isEditMode?: boolean;
-}> = ({ title, children, isEditMode = false }) => {
+}> = ({ title, children, isEditMode = true }) => {
   const [isHovered, setIsHovered] = useState(false);
   const borderStyle = isEditMode ? "1px dashed #ccc" : "1px solid transparent";
   return (
@@ -45,7 +45,7 @@ const DashboardBlock: FC<{
               visibility: isEditMode && isHovered ? "visible" : "hidden",
             }}
           >
-            <i className="fas fa-pen" style={{ fontSize: "0.7em" }}></i>
+            <i className="fas fa-pen" ></i>
           </IconButton>
         </Box>
         <IconButton
@@ -54,7 +54,7 @@ const DashboardBlock: FC<{
             visibility: isEditMode && isHovered ? "visible" : "hidden",
           }}
         >
-          <i className="fas fa-trash" style={{ fontSize: "0.7em" }}></i>
+          <i className="fas fa-trash" ></i>
         </IconButton>
       </Box>
       <Box>{children}</Box>

@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from "react";
+import { FC, ReactNode } from "react";
 import { AppBar, Box, IconButton, Toolbar, Button } from "@mui/material";
 import TeamsMenu from "./TeamsMenu";
 import ChevronDown from "@/shared/icons/ChevronDown";
@@ -56,10 +56,8 @@ const Navbar = () => {
             <IconButton
               sx={{
                 gap: "5px",
-                display: "flex",
                 color: "white",
-                margin: "0",
-                padding: "0",
+                textAlign: "center",
               }}
               size="small"
             >

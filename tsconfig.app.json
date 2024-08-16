@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
+    "target": "ES2022",
     "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
@@ -20,12 +20,13 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-        // all paths defined here must match the configured path in `vite.config.ts`
-        "paths": {
-          "@/*": [
-            "./src/*"
-          ],
-        }
+    // all paths defined here must match the configured path in `vite.config.ts`
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ],
+    },
+    "experimentalDecorators": false /* or just remove the flag */,
   },
   "include": ["src"]
 }
