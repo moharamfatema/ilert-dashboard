@@ -1,13 +1,15 @@
-import { Container, Box, Divider, Typography } from "@mui/material";
-import DashboardHeader from "./DashboardHeader";
-import DashboardBlock from "./DashboardBlock";
-import { observer } from "mobx-react-lite";
 import { useContext, useState } from "react";
+
+import { Container, Box, Divider, Typography } from "@mui/material";
+import { observer } from "mobx-react-lite";
+
 import {
   DashboardContext,
   DashboardProvider,
 } from "@/providers/DashboardConfig";
-import AddMenu from "./AddMenu";
+
+import { DashboardHeader, AddMenu, SortableProvider } from "./components";
+import DashboardBlock from "./DashboardBlock";
 
 const Dashboard = observer(() => {
   const [isEditMode, setEditMode] = useState<boolean>(false);
@@ -21,6 +23,7 @@ const Dashboard = observer(() => {
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
+
   return (
     <DashboardProvider>
       <Box
@@ -40,19 +43,22 @@ const Dashboard = observer(() => {
             flexDirection: "column",
           }}
         >
-          {dashboardConfig.blocks.map((block) => (
-            <DashboardBlock
-              key={block.id}
-              title={block.title}
-              isEditMode={isEditMode}
-              onDelete={() => dashboardConfig.removeBlock(block.id)}
-              onTitleChange={(title) =>
-                dashboardConfig.changeBlock(block.id, title)
-              }
-            >
-              {block.id}
-            </DashboardBlock>
-          ))}
+          <SortableProvider isEditMode={isEditMode}>
+            {dashboardConfig.blocks.map((block) => (
+              <DashboardBlock
+                key={block.id}
+                id={block.id}
+                title={block.title}
+                isEditMode={isEditMode}
+                onDelete={() => dashboardConfig.removeBlock(block.id)}
+                onTitleChange={(title) =>
+                  dashboardConfig.changeBlock(block.id, title)
+                }
+              >
+                {block.id}
+              </DashboardBlock>
+            ))}
+          </SortableProvider>
           {isEditMode && dashboardConfig.missingBlocks.length !== 0 && (
             <Box
               sx={{

@@ -10,7 +10,6 @@ import { Block } from "@/types/resources";
 
 
 class DashboardConfig {
-  @observable isEditMode = false;
   @observable blocks: Block[] = [];
   constructor() {
     makeAutoObservable(this);
@@ -34,15 +33,16 @@ class DashboardConfig {
     );
     this.blocks = response?.data.blocks || [];
   }
-  @action setEditMode(isEditMode: boolean) {
-    this.isEditMode = isEditMode;
-  }
   @action changeBlock(blockId: string, title: string, options: any = {}) {
     const block = this.blocks.find((block) => block.id === blockId);
     if (!block) return;
     block.title = title;
     block.options = options;
   }
+  @action setBlocks(blocks: Block[]) {
+    this.blocks = blocks;
+  }
+
   @action saveBlocks() {
     mutateAuthorizedResource(
       ENDPOINTS.VIEW_PREFERRENCES(DASHBOARD_VIEW_ID),

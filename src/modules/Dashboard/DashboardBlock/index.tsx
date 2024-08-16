@@ -1,15 +1,23 @@
-import React, { FC, useContext, useState } from "react";
+import React, { FC, useState } from "react";
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 import { Box, IconButton } from "@mui/material";
 import Title from "./Title";
-
 const DashboardBlock: FC<{
   title: string;
+  id: string;
   children: React.ReactNode;
   isEditMode: boolean;
   onDelete: () => void;
   onTitleChange: (title: string) => void;
-}> = ({ title, children, isEditMode, onDelete, onTitleChange }) => {
+}> = ({ title, children, isEditMode, onDelete, onTitleChange, id }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({ id });
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+  };
   const borderStyle = isEditMode ? "1px dashed #ccc" : "1px solid transparent";
   return (
     <Box
@@ -19,9 +27,13 @@ const DashboardBlock: FC<{
         border: borderStyle,
         borderRadius: 2,
         "&:hover": {
-          // cursor: "pointer",
+          cursor: isEditMode ? "move" : "default",
         },
       }}
+      ref={setNodeRef}
+      style={style}
+      {...attributes}
+      {...listeners}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >

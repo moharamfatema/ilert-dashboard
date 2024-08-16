@@ -59,8 +59,11 @@ const DashboardBlockTitle: FC<{
               paddingY: "1px",
               borderBottom: "2px solid transparent",
               marginRight: 2,
+              cursor: "text",
             }}
-            onClick={() => setIsEditing(true)}
+            onClick={() => {
+              isEditMode && setIsEditing(true);
+            }}
           >
             {title}
           </Typography>
