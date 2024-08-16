@@ -7,7 +7,8 @@ const DashboardBlock: FC<{
   children: React.ReactNode;
   isEditMode: boolean;
   onDelete: () => void;
-}> = ({ title, children, isEditMode, onDelete }) => {
+  onTitleChange: (title: string) => void;
+}> = ({ title, children, isEditMode, onDelete, onTitleChange }) => {
   const [isHovered, setIsHovered] = useState(false);
   const borderStyle = isEditMode ? "1px dashed #ccc" : "1px solid transparent";
   return (
@@ -33,7 +34,12 @@ const DashboardBlock: FC<{
           marginBottom: 1,
         }}
       >
-        <Title title={title} isEditMode={isEditMode} isHovered={isHovered} />
+        <Title
+          title={title}
+          isEditMode={isEditMode}
+          isHovered={isHovered}
+          onTitleChange={onTitleChange}
+        />
         <IconButton
           size="small"
           sx={{

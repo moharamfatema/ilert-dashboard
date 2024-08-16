@@ -37,6 +37,12 @@ class DashboardConfig {
   @action setEditMode(isEditMode: boolean) {
     this.isEditMode = isEditMode;
   }
+  @action changeBlock(blockId: string, title: string, options: any = {}) {
+    const block = this.blocks.find((block) => block.id === blockId);
+    if (!block) return;
+    block.title = title;
+    block.options = options;
+  }
   @action saveBlocks() {
     mutateAuthorizedResource(
       ENDPOINTS.VIEW_PREFERRENCES(DASHBOARD_VIEW_ID),

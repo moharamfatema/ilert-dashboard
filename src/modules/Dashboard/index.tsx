@@ -37,6 +37,9 @@ const Dashboard = observer(() => {
               title={block.title}
               isEditMode={isEditMode}
               onDelete={() => dashboardConfig.removeBlock(block.id)}
+              onTitleChange={(title) =>
+                dashboardConfig.changeBlock(block.id, title)
+              }
             >
               {block.id}
             </DashboardBlock>
