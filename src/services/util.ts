@@ -6,3 +6,19 @@ export const getAuthorizedResource = async (url: string) => {
         },
     });
 };
+type MutateMethod = "POST" | "PUT" | "DELETE";
+export const mutateAuthorizedResource = async (
+  url: string,
+  data: any,
+  method: MutateMethod,
+) => {
+  return await axios({
+    method,
+    url,
+    data,
+    headers: {
+      Authorization: import.meta.env.VITE_ILERT_API_KEY,
+      "Content-Type": "application/json",
+    },
+  });
+};

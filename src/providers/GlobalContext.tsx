@@ -17,7 +17,11 @@ class GlobalConfig {
       team.members.some((member) => member.user.id === this.user?.id),
     );
   }
-
+  @computed get filteredTeams() {
+    if (this.selectedTeam === ALL_TEAMS) return this.teams;
+    if (this.selectedTeam === MY_TEAMS) return this.myTeams;
+    return this.teams.filter((team) => team.name === this.selectedTeam);
+  }
   constructor() {
     makeAutoObservable(this);
     this.fetchData();

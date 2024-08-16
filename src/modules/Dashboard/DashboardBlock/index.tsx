@@ -1,11 +1,13 @@
-import { Box, IconButton, Typography } from "@mui/material";
-import React, { FC, useState } from "react";
+import React, { FC, useContext, useState } from "react";
+import { Box, IconButton } from "@mui/material";
+import Title from "./Title";
 
 const DashboardBlock: FC<{
   title: string;
   children: React.ReactNode;
-  isEditMode?: boolean;
-}> = ({ title, children, isEditMode = true }) => {
+  isEditMode: boolean;
+  onDelete: () => void;
+}> = ({ title, children, isEditMode, onDelete }) => {
   const [isHovered, setIsHovered] = useState(false);
   const borderStyle = isEditMode ? "1px dashed #ccc" : "1px solid transparent";
   return (
@@ -16,8 +18,7 @@ const DashboardBlock: FC<{
         border: borderStyle,
         borderRadius: 2,
         "&:hover": {
-          // hand cursor
-        //   cursor: "pointer",
+          // cursor: "pointer",
         },
       }}
       onMouseEnter={() => setIsHovered(true)}
@@ -32,29 +33,15 @@ const DashboardBlock: FC<{
           marginBottom: 1,
         }}
       >
-        <Box
-          sx={{
-            display: "flex",
-          }}
-        >
-          <Typography variant="subtitle2">{title}</Typography>
-          <IconButton
-            size="small"
-            sx={{
-              marginRight: 2,
-              visibility: isEditMode && isHovered ? "visible" : "hidden",
-            }}
-          >
-            <i className="fas fa-pen" ></i>
-          </IconButton>
-        </Box>
+        <Title title={title} isEditMode={isEditMode} isHovered={isHovered} />
         <IconButton
           size="small"
           sx={{
             visibility: isEditMode && isHovered ? "visible" : "hidden",
           }}
+          onClick={onDelete}
         >
-          <i className="fas fa-trash" ></i>
+          <i className="fas fa-trash"></i>
         </IconButton>
       </Box>
       <Box>{children}</Box>

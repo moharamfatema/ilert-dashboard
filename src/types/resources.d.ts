@@ -31,3 +31,10 @@ export type Team = {
   createdAt: string;
   updatedAt: string;
 };
+
+export type Block = {
+  id: string;
+  title: string;
+  options?: Record<string, any>;
+};
+
