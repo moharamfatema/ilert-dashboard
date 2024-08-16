@@ -1,60 +1,33 @@
 import { FC, Fragment, useContext, useState } from "react";
-import {
-  Container,
-  Typography,
-  Box,
-  Button,
-  Menu,
-  MenuItem,
-} from "@mui/material";
+import { Container, Typography, Box, Button } from "@mui/material";
 import { observer } from "mobx-react-lite";
 
 import { GlobalContext } from "@/providers/GlobalContext";
 import { DashboardContext } from "@/providers/DashboardConfig";
 
 import ChevronDown from "@/shared/icons/ChevronDown";
+import AddMenu from "./AddMenu";
 
-const AddMenu: FC = observer(() => {
+const AddMenuButton: FC = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const dashboardConfig = useContext(DashboardContext);
   const open = Boolean(anchorEl);
-
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
 
   const handleClose = () => {
     setAnchorEl(null);
   };
-
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
   return (
     <Fragment>
       <Button variant="outlined" size="small" onClick={handleClick}>
         Add &nbsp;
         <ChevronDown />
       </Button>
-      <Menu
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        onClick={handleClose}
-      >
-        {dashboardConfig.missingBlocks.length !== 0 ? (
-          dashboardConfig.missingBlocks.map((block) => (
-            <MenuItem
-              key={block.id}
-              onClick={() => dashboardConfig.addBlock(block.id)}
-            >
-              {block.title}
-            </MenuItem>
-          ))
-        ) : (
-          <MenuItem disabled>No more blocks to add</MenuItem>
-        )}
-      </Menu>
+      <AddMenu open={open} anchorEl={anchorEl} handleClose={handleClose} />
     </Fragment>
   );
-});
+};
 
 const DashboardHeader: FC<{
   isEditMode: boolean;
@@ -106,7 +79,7 @@ const DashboardHeader: FC<{
             >
               Save
             </Button>
-            <AddMenu />
+            <AddMenuButton />
           </Fragment>
         )}
       </Box>
