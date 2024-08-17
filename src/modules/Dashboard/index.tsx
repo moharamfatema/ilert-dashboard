@@ -8,18 +8,25 @@ import {
   DashboardProvider,
 } from "@/providers/DashboardConfig";
 
-import { DashboardHeader, AddMenu, SortableProvider } from "./components";
+import {
+  DashboardHeader,
+  AddMenu,
+  SortableProvider,
+  OpenAlerts,
+  ServiceStatus,
+} from "./components";
 import DashboardBlock from "./DashboardBlock";
-import OpenAlerts from "./components/OpenAlerts";
 
 const getBlockComponent = (blockId: string) => {
   switch (blockId) {
     case "open-alerts":
       return <OpenAlerts />;
+    case "service-status":
+      return <ServiceStatus />;
     default:
       return <div>Block not found</div>;
   }
-}
+};
 
 const Dashboard = observer(() => {
   const [isEditMode, setEditMode] = useState<boolean>(false);

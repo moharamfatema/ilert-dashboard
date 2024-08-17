@@ -14,3 +14,10 @@ export const useOpenAlerts = ({ teamContext }: { teamContext: number }) => {
   const accepted = useContextualizedResource(ENDPOINTS.OPEN_ALERTS+"?states=ACCEPTED", teamContext);
   return {pending, accepted};
 };
+
+export const useServiceStatus = ({ teamContext }: { teamContext: number }) => {
+  const url = ENDPOINTS.SERVICE_STATUS({
+    include: "uptime",
+  });
+  return useContextualizedResource(url, teamContext);
+};

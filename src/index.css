@@ -8,3 +8,7 @@ body {
 i.fa-solid, i.fas {
   font-size: 0.7em;
 }
+
+i.fas.large {
+  font-size: 1.5em;
+}
