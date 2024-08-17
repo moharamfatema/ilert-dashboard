@@ -14,7 +14,8 @@ import {
   SortableProvider,
   OpenAlerts,
   ServiceStatus,
-  OpenIncidents
+  OpenIncidents,
+  RecentAlertActivity,
 } from "./components";
 import DashboardBlock from "./DashboardBlock";
 
@@ -26,6 +27,8 @@ const getBlockComponent = (blockId: string) => {
       return <ServiceStatus />;
     case "open-incidents":
       return <OpenIncidents />;
+    case "recent-alert-activity":
+      return <RecentAlertActivity />;
     default:
       return <div>Block not found</div>;
   }

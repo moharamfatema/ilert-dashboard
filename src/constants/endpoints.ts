@@ -17,4 +17,6 @@ export const ENDPOINTS = {
   SERVICE_STATUS: (params: Record<string, string>) =>
     urlWithQuery("/api/services", params),
   INCIDENTS: "/api/incidents",
+  LOG_ENTRIES:
+    "/api/alerts/newest-log-entries?include=alert&include=vars&include=textPlain",
 };

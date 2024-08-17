@@ -4,6 +4,7 @@ import SortableProvider from "./SortableProvider";
 import OpenAlerts from "./OpenAlerts";
 import ServiceStatus from "./ServiceStatus";
 import OpenIncidents from "./OpenIncidents";
+import RecentAlertActivity from "./RecentAlertActivity";
 
 export {
   AddMenu,
@@ -12,4 +13,5 @@ export {
   OpenAlerts,
   ServiceStatus,
   OpenIncidents,
+  RecentAlertActivity,
 };

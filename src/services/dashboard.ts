@@ -26,3 +26,8 @@ export const useIncidents = ({ teamContext }: { teamContext: number }) => {
   const url = ENDPOINTS.INCIDENTS;
   return useContextualizedResource(url, teamContext);
 }
+
+export const useLogEntries = ({ teamContext }: { teamContext: number }) => {
+  const url = ENDPOINTS.LOG_ENTRIES;
+  return useContextualizedResource(url, teamContext);
+}

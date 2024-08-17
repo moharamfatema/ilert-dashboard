@@ -130,3 +130,73 @@ export type Incident = {
   }[];
   resolvedOn: string;
 };
+
+type Alert = {
+  summary: string;
+  alertSource: {
+    name: string;
+    iconUrl: string;
+  };
+}
+
+export type Activity = {
+  id: number;
+  alert: Alert;
+  logEntryType: "ConnectorAutomaticResultErrorLogEntry" |
+    "ConnectorAutomaticResultLogEntry" |
+    "AlertActionErrorLogEntry" |
+    "AlertActionFailLogEntry" |
+    "AlertActionSuccessLogEntry" |
+    "AlertNotRoutedLogEntry" |
+    "AlertReceivedLogEntry" |
+    "AlertRoutedSuccessfulLogEntry" |
+    "AlertSourceResponseLogEntry" |
+    "CallLogEntry" |
+    "EmailReceivedLogEntry" |
+    "EmailResolvedLogEntry" |
+    "FilterableLogEntryType" |
+    "HeartbeatOverdueLogEntry" |
+    "HeartbeatResolvedLogEntry" |
+    "AlertAssignedBySystemLogEntry" |
+    "AlertAssignedByUserLogEntry" |
+    "AlertAssignedToPolicyLogEntry" |
+    "AlertAssignedToScheduleLogEntry" |
+    "AlertAutoResolvedLogEntry" |
+    "AlertCommentAddedBySystemLogEntry" |
+    "AlertCommentAddedLogEntry" |
+    "AlertCommentPublishedLogEntry" |
+    "AlertCreatedByUserLogEntry" |
+    "AlertRaisedBySystemLogEntry" |
+    "AlertRaisedByUserLogEntry" |
+    "AlertSummaryChangedLogEntry" |
+    "IncomingCallLogEntry" |
+    "LowPriorityCallLog" |
+    "MailboxCallLogEntry" |
+    "MailboxRecordReceivedLog" |
+    "MailboxTranscribedReceivedLog" |
+    "NobodyOnCallLogEntry" |
+    "NotificationLogEntry" |
+    "ParallelCallLogEntry" |
+    "PhoneNumberNotSetLogEntry" |
+    "PhoneNumberBlockedLogEntry" |
+    "QueueResultLogEntry" |
+    "StakeholderAddedBySystemLogEntry" |
+    "StakeholderAddedLogEntry" |
+    "StakeholderRemovedLogEntry" |
+    "StakeholderResubscribedLogEntry" |
+    "StakeholderUnsubscribedLogEntry" |
+    "UserResponseLogEntry" |
+    "InComIncidentCreatedLogEntry" |
+    "InComIncidentResolvedLogEntry" |
+    "InComServiceTransitionLogEntry" |
+    "InComLinkedLogEntry" |
+    "InComUnlinkedLogEntry" |
+    "AlertChannelAttachedByUserLogEntry" |
+    "AlertChannelDetachedByUserLogEntry" |
+    "AlertEscalatedToLevelLogEntry";
+    text: string;
+    alertId: number;
+    filterTypes: ("NOTIFICATIONS" | "ALERT_SOURCE_EVENTS" | "CALL_ROUTING_EVENTS" | "ALERT_UPDATES" | "CONNECTOR_EVENTS")[];
+    vars: Record<string, string>;
+    timestamp: string;
+};
