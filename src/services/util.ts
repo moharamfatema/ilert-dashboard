@@ -22,3 +22,15 @@ export const mutateAuthorizedResource = async (
     },
   });
 };
+
+export const getContextualizedResource = async (
+  url: string,
+  teamContext: number,
+) => {
+  return await axios.get(url, {
+    headers: {
+      Authorization: import.meta.env.VITE_ILERT_API_KEY,
+      "Team-Context": teamContext,
+    },
+  });
+};

@@ -31,7 +31,7 @@ class DashboardConfig {
     const response = await getAuthorizedResource(
       ENDPOINTS.VIEW_PREFERRENCES(DASHBOARD_VIEW_ID),
     );
-    this.blocks = response?.data.blocks || [];
+    this.setBlocks(response?.data.blocks || []);
   }
   @action changeBlock(blockId: string, title: string, options: any = {}) {
     const block = this.blocks.find((block) => block.id === blockId);

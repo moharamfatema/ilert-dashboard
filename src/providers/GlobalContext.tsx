@@ -22,6 +22,16 @@ class GlobalConfig {
     if (this.selectedTeam === MY_TEAMS) return this.myTeams;
     return this.teams.filter((team) => team.name === this.selectedTeam);
   }
+  @computed get teamContext(){
+    switch (this.selectedTeam) {
+      case ALL_TEAMS:
+        return 0;
+      case MY_TEAMS:
+        return -1;
+      default:
+        return this.teams.find((team) => team.name === this.selectedTeam)?.id || 0;
+    }
+  }
   constructor() {
     makeAutoObservable(this);
     this.fetchData();
@@ -29,13 +39,19 @@ class GlobalConfig {
 
   async fetchData() {
     const userResponse = await getAuthorizedResource(ENDPOINTS.CURRENT_USER);
-    this.user = userResponse.data;
+    this.setUser(userResponse.data);
     const teamsResponse = await getAuthorizedResource(ENDPOINTS.TEAMS);
-    this.teams = teamsResponse.data;
-    this.selectedTeam = ALL_TEAMS;
+    this.setTeams(teamsResponse.data);
+    this.setSelectedTeam(ALL_TEAMS);
   }
   @action setSelectedTeam(teamName: string) {
     this.selectedTeam = teamName;
+  }
+  @action setUser(user: User) {
+    this.user = user;
+  }
+  @action setTeams(teams: Team[]) {
+    this.teams = teams;
   }
 }
 

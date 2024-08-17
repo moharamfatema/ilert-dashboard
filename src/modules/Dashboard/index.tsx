@@ -10,6 +10,16 @@ import {
 
 import { DashboardHeader, AddMenu, SortableProvider } from "./components";
 import DashboardBlock from "./DashboardBlock";
+import OpenAlerts from "./components/OpenAlerts";
+
+const getBlockComponent = (blockId: string) => {
+  switch (blockId) {
+    case "open-alerts":
+      return <OpenAlerts />;
+    default:
+      return <div>Block not found</div>;
+  }
+}
 
 const Dashboard = observer(() => {
   const [isEditMode, setEditMode] = useState<boolean>(false);
@@ -55,7 +65,7 @@ const Dashboard = observer(() => {
                   dashboardConfig.changeBlock(block.id, title)
                 }
               >
-                {block.id}
+                {getBlockComponent(block.id)}
               </DashboardBlock>
             ))}
           </SortableProvider>
