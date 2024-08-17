@@ -21,3 +21,8 @@ export const useServiceStatus = ({ teamContext }: { teamContext: number }) => {
   });
   return useContextualizedResource(url, teamContext);
 };
+
+export const useIncidents = ({ teamContext }: { teamContext: number }) => {
+  const url = ENDPOINTS.INCIDENTS;
+  return useContextualizedResource(url, teamContext);
+}

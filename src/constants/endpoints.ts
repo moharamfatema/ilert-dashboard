@@ -16,4 +16,5 @@ export const ENDPOINTS = {
     `/api/v1/user-view-preferences/${viewId}`,
   SERVICE_STATUS: (params: Record<string, string>) =>
     urlWithQuery("/api/services", params),
+  INCIDENTS: "/api/incidents",
 };

@@ -111,3 +111,22 @@ export type Service = {
   }[];
 };
 
+export type Incident = {
+  id: number;
+  summary: string;
+  status: "INVESTIGATING" | "IDENTIFIED" | "MONITORING" | "RESOLVED";
+  message: string;
+  sendNotification: boolean;
+  createdAt: string;
+  updatedAt: string;
+  affectedServices: {
+    impact:
+      | "OPERATIONAL"
+      | "UNDER_MAINTENANCE"
+      | "DEGRADED"
+      | "PARTIAL_OUTAGE"
+      | "MAJOR_OUTAGE";
+    service: Service;
+  }[];
+  resolvedOn: string;
+};
