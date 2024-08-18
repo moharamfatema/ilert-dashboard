@@ -28,9 +28,20 @@ class DashboardConfig {
     this.blocks = this.blocks.filter((block) => block.id !== blockId);
   }
   @action async fetchBlocks() {
-    const response = await getAuthorizedResource(
-      ENDPOINTS.VIEW_PREFERRENCES(DASHBOARD_VIEW_ID),
-    );
+    let response;
+    try {
+      response = await getAuthorizedResource(
+        ENDPOINTS.VIEW_PREFERRENCES(DASHBOARD_VIEW_ID),
+      );
+    } catch (e) {
+      await mutateAuthorizedResource(
+        ENDPOINTS.VIEW_PREFERRENCES(DASHBOARD_VIEW_ID),
+        JSON.stringify({blocks: DEFAULT_BLOCKS}),
+        "PUT",
+      ).then((res) => {
+        response = res;
+      });
+    }
     this.setBlocks(response?.data.blocks || []);
   }
   @action changeBlock(blockId: string, title: string, options: any = {}) {

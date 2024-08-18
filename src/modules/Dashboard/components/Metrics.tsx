@@ -47,7 +47,6 @@ const MetricGraph: FC<{ metric: { name: string; id: number } }> = observer(
             </Box>
             <AreaChart
               data={data.data.series.map((v: number[]) => {
-                console.log(v);
                 return {
                   timestamp: moment(v[0]*1000).format("DD MMM"),
                   series: v[1],

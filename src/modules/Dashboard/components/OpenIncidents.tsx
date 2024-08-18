@@ -16,7 +16,7 @@ const IncidentBox: FC<{ incident: Incident }> = ({ incident }) => {
       sx={{
         padding: 2,
         border: 1,
-        borderColor: "grey.500",
+        borderColor: "#ccc",
         borderRadius: 1,
         marginY: 1,
         gap: 1,
