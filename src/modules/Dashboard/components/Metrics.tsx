@@ -42,7 +42,7 @@ const MetricGraph: FC<{ metric: { name: string; id: number } }> = observer(
             >
               <Typography variant="subtitle2">{metric.name}</Typography>
               <Typography variant="body2" color="grey">
-                {`Last value : ${data.data.totalAgg.toFixed(2)} ms`}
+                {`Avg : ${data.data.totalAgg.toFixed(2)} ms`}
               </Typography>
             </Box>
             <AreaChart
