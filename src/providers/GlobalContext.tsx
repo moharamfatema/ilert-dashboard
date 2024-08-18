@@ -1,7 +1,7 @@
 import React, { createContext, PropsWithChildren } from "react";
 import { Team, User } from "@/types/resources";
 import { action, computed, makeAutoObservable, observable } from "mobx";
-import { getAuthorizedResource } from "@/services/util";
+import { getAuthorizedResource, getContextualizedResource } from "@/services/util";
 import { ENDPOINTS } from "@/constants/endpoints";
 
 export const ALL_TEAMS = "All Teams";
@@ -11,6 +11,7 @@ class GlobalConfig {
   @observable user: User | null = null;
   @observable teams: Team[] = [];
   @observable selectedTeam: string = ALL_TEAMS;
+  @observable availableMetrics = [];
   @computed get myTeams() {
     if (!this.user) return [];
     return this.teams.filter((team) =>
@@ -36,13 +37,17 @@ class GlobalConfig {
     makeAutoObservable(this);
     this.fetchData();
   }
-
+  async fetchAvailableMetrics() {
+    return await getContextualizedResource(ENDPOINTS.METRICS.LIST, this.teamContext);
+  }
   async fetchData() {
     const userResponse = await getAuthorizedResource(ENDPOINTS.CURRENT_USER);
     this.setUser(userResponse.data);
     const teamsResponse = await getAuthorizedResource(ENDPOINTS.TEAMS);
     this.setTeams(teamsResponse.data);
     this.setSelectedTeam(ALL_TEAMS);
+    const metricsResponse = await this.fetchAvailableMetrics();
+    this.setAvailableMetrics(metricsResponse.data);
   }
   @action setSelectedTeam(teamName: string) {
     this.selectedTeam = teamName;
@@ -50,8 +55,13 @@ class GlobalConfig {
   @action setUser(user: User) {
     this.user = user;
   }
-  @action setTeams(teams: Team[]) {
+  @action async setTeams(teams: Team[]) {
     this.teams = teams;
+    const result = await this.fetchAvailableMetrics();
+    this.availableMetrics = result.data;
+  }
+  @action setAvailableMetrics(metrics: any) {
+    this.availableMetrics = metrics;
   }
 }
 

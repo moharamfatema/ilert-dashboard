@@ -200,3 +200,8 @@ export type Activity = {
     vars: Record<string, string>;
     timestamp: string;
 };
+
+export type MetricSeries = {
+  series: number[][];
+  totalAgg: number;
+};

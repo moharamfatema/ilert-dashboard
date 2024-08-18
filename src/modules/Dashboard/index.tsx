@@ -16,6 +16,7 @@ import {
   ServiceStatus,
   OpenIncidents,
   RecentAlertActivity,
+  Metrics,
 } from "./components";
 import DashboardBlock from "./DashboardBlock";
 
@@ -29,6 +30,8 @@ const getBlockComponent = (blockId: string) => {
       return <OpenIncidents />;
     case "recent-alert-activity":
       return <RecentAlertActivity />;
+    case "metrics":
+      return <Metrics />;
     default:
       return <div>Block not found</div>;
   }

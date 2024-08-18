@@ -5,6 +5,7 @@ import OpenAlerts from "./OpenAlerts";
 import ServiceStatus from "./ServiceStatus";
 import OpenIncidents from "./OpenIncidents";
 import RecentAlertActivity from "./RecentAlertActivity";
+import Metrics from "./Metrics";
 
 export {
   AddMenu,
@@ -14,4 +15,5 @@ export {
   ServiceStatus,
   OpenIncidents,
   RecentAlertActivity,
+  Metrics,
 };

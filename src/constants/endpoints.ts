@@ -19,4 +19,8 @@ export const ENDPOINTS = {
   INCIDENTS: "/api/incidents",
   LOG_ENTRIES:
     "/api/alerts/newest-log-entries?include=alert&include=vars&include=textPlain",
+  METRICS: {
+    LIST: "/api/metrics",
+    SERIES: (metricId: string) => `/api/metrics/${metricId}/series`,
+  },
 };

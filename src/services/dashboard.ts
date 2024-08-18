@@ -31,3 +31,9 @@ export const useLogEntries = ({ teamContext }: { teamContext: number }) => {
   const url = ENDPOINTS.LOG_ENTRIES;
   return useContextualizedResource(url, teamContext);
 }
+
+export const useMetrics = ({ teamContext, metricId }: { teamContext: number, metricId:number }) => {
+  const url = ENDPOINTS.METRICS.SERIES(metricId.toString());
+  const timestamp = Math.floor(Date.now() / 1000);
+  return useContextualizedResource(url+`?aggregation=AVG&interval-sec=7200&from=1721522460&until=${timestamp}&interpolate=true`, teamContext);
+}
